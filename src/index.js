@@ -3,8 +3,6 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
-import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
-import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 
 import Map from './components/Map.js';
 
@@ -39,10 +37,10 @@ class BasicWorld{
 
         // setting up orbit controls
         this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-        //this.controls.maxDistance = 40;
+        this.controls.maxDistance = 50;
         this.controls.maxPolarAngle = 0.45 * Math.PI;
         this.controls.zoomSpeed = 0.5;
-        //this.controls.panSpeed = 0.5;
+        this.controls.panSpeed = 0.5;
 
         // setting up scene and composer (for effects)
         this.scene = new THREE.Scene();
@@ -50,15 +48,8 @@ class BasicWorld{
         this.composer = new EffectComposer(this.renderer);
         this.composer.addPass(new RenderPass(this.scene, this.camera));
 
-/*        const ENTIRE_SCENE = 0, BLOOM_SCENE = 1;
-        const bloomLayer = new THREE.Layers();
-        bloomLayer.set( BLOOM_SCENE );*/
-
-        //this.composer.addPass(new UnrealBloomPass({x: 1024, y: 1024}, 2.0, 0.0, 0.75));
-
         // setting up the final map with streets and traffic lights
 
-        //Array(200).fill().forEach(this.scene.add(this.addStar))
         var map = new Map();
         this.scene.add(map.generate()); // adding world to scene
         

@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import Ampel from './ampel';
 import { GUI } from 'dat.gui';
-import { Street, Junction } from './MapTiles';
+import { Junction } from './MapTiles';
 
 export default class Map{
     generate() {
