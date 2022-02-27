@@ -19,8 +19,12 @@ export default class Map{
         this.worldJunction = new Junction();
         world.add(this.worldJunction.build());
 
+        var control = this.worldJunction.control;
+
         const gui = new GUI({name: "Einstellung der Zeiten", width: 500});
         var zeitFolder = gui.addFolder("Zeiten");
+        var obj = { add:function(){ control() }};
+        zeitFolder.add(obj,'add').name("Automatische Steurerung starten");
         zeitFolder.add(this.worldJunction, "gruenPhase", 0, 20, 1).name("Dauer der Grün-Phase");
         zeitFolder.add(this.worldJunction, "phase", 0, 10, 1).name("Dauer für sonstige Phasen");
         zeitFolder.open();

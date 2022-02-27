@@ -30,19 +30,19 @@ class BasicWorld{
             45,
             window.innerWidth / window.innerHeight,
             1,
-            100
+            500
         );
     
-        this.camera.position.x = 20;
+        this.camera.position.x = 30;
         this.camera.position.y = 15;
-        this.camera.position.z = 20;
+        this.camera.position.z = 30;
 
         // setting up orbit controls
         this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-        this.controls.maxDistance = 40;
+        //this.controls.maxDistance = 40;
         this.controls.maxPolarAngle = 0.45 * Math.PI;
         this.controls.zoomSpeed = 0.5;
-        this.controls.panSpeed = 0.1;
+        //this.controls.panSpeed = 0.5;
 
         // setting up scene and composer (for effects)
         this.scene = new THREE.Scene();
@@ -73,19 +73,6 @@ class BasicWorld{
         requestAnimationFrame(() => {
             this._Animate();
         });
-    }
-
-    addStar() {
-        const geometry = new THREE.SphereGeometry(0.25, 24, 24);
-        const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
-        const star = new THREE.Mesh(geometry, material);
-      
-        const [x, y, z] = Array(3)
-        .fill()
-        .map(() => THREE.MathUtils.randFloatSpread(100));
-      
-        star.position.set(x, y, z);
-        return star;
     }
 }
 

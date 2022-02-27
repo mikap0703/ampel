@@ -9,7 +9,7 @@ class Junction {
         this.street3 = new Street(5, 3);
         this.gruenPhase = 5;
         this.phase = 1;
-        this.control();
+        this.control = this.control.bind(this);
     }
 
     build() {
@@ -20,7 +20,7 @@ class Junction {
 
     control() {
         this.i = 0;
-        this.delayFaktor = 1;
+        this.delayFaktor = 0;
 
         setTimeout(this.foo.bind(this), 1000 * this.delayFaktor)
     }
@@ -48,6 +48,7 @@ class Junction {
     }
 
 }
+
 class Street {
     constructor(width, heading) {
         this.width = width;
@@ -69,10 +70,11 @@ class Street {
         var rightBorder = new THREE.Mesh(geo, mat);
         rightBorder.position.x = - this.width;
 
-        street.add(leftBorder);
-        street.add(rightBorder);
+        var mittellinie = this.mittellinie(streetLength);
 
+        street.add(leftBorder, rightBorder, mittellinie);
         street.rotateX(0.5 * Math.PI);
+        
         group.add(street);
 
         var streetAmpel = this.ampel.build();
@@ -101,6 +103,25 @@ class Street {
         group.rotateY(this.heading * 0.5 * Math.PI)
 
         return(group)
+    }
+
+    mittellinie(length) {
+        var lineLength = 2;
+        var count = (length / lineLength) / 2;
+        var linie = new THREE.Group();
+
+        var geo = new THREE.CylinderGeometry(0.05, 0.05, lineLength, 8);
+        var mat = new THREE.MeshBasicMaterial({color: 0xffffff});
+
+        for (let i = 0; i < count; i++ ) {
+            var strich = new THREE.Mesh(geo, mat);
+            strich.position.y = i * 2 * lineLength;
+            linie.add(strich)
+        }
+
+        linie.position.y = 0.5 * (lineLength - length);
+
+        return linie
     }
 }
 
