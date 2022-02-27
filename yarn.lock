@@ -5161,10 +5161,10 @@
     "source-map" "~0.6.1"
     "source-map-support" "~0.5.12"
 
-"three@^0.116.1":
-  "integrity" "sha512-l2JCMiA/lVZAuSrLWRYMalvpR+0j8hbIhCpfs4V6JFnw2+JQEQJ5HltNpfFr+9TDpQts1BhtcISehWf/xBGPvQ=="
-  "resolved" "https://registry.npmjs.org/three/-/three-0.116.1.tgz"
-  "version" "0.116.1"
+"three@^0.138.0":
+  "integrity" "sha512-xM/WwUd53ClkbHFrftW29aIzMVvyhj4rSZmIVgn6hZ/kYB7aMjDD8FFy4VJamygXSrldJuOgEJuaI+E+8mt/KA=="
+  "resolved" "https://registry.npmjs.org/three/-/three-0.138.0.tgz"
+  "version" "0.138.0"
 
 "through2@^0.6.3":
   "integrity" "sha1-QaucZ7KdVyCQcUEOHXp6lozTrUg="
